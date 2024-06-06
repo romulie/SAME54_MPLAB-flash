@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>FTPserver</name>
+            <creation-uuid>959961dc-b7fa-493f-8c88-4ef0304ac98b</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects/>
+            <sourceRootList>
+                <sourceRootElem>D:/Work/FTPserverXplainedPro/src/third_party/cycloneTCP</sourceRootElem>
+                <sourceRootElem>D:/Work/FTPserverXplainedPro/src/config/default</sourceRootElem>
+                <sourceRootElem>D:/Work/FTPserverXplainedPro/src/third_party/littlefs</sourceRootElem>
+                <sourceRootElem>D:/Work/FTPserverXplainedPro/src/driver</sourceRootElem>
+                <sourceRootElem>D:/Work/FTPserverXplainedPro/src/application</sourceRootElem>
+                <sourceRootElem>../src/third_party/littlefs</sourceRootElem>
+                <sourceRootElem>../src/driver/w25qxx_driver</sourceRootElem>
+                <sourceRootElem>../src/application/ftp_startup</sourceRootElem>
+                <sourceRootElem>../src/application/littlefs_startup</sourceRootElem>
+                <sourceRootElem>../src/application/w25qxx_startup</sourceRootElem>
+                <sourceRootElem>../src/third_party/cycloneTCP</sourceRootElem>
+                <sourceRootElem>../src/driver/eth_mac_driver</sourceRootElem>
+                <sourceRootElem>../src/driver/eth_phy_driver</sourceRootElem>
+                <sourceRootElem>../src/config/default</sourceRootElem>
+                <sourceRootElem>../src/application/w25qxx_test</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>default</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>
