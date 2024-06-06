@@ -11,15 +11,11 @@
 #include "error.h"
 
 // module print level
-#define TRACE_LEVEL     TRACE_LEVEL_DEBUG
+//#define TRACE_LEVEL     TRACE_LEVEL_VERBOSE
+#define TRACE_LEVEL     TRACE_LEVEL_DEBUG   
 
 #include "debug.h"
 
-// Do not use TRACE_DEBUG()
-//#ifdef TRACE_DEBUG(...)
-//    #undef TRACE_DEBUG(...)
-//    #define TRACE_DEBUG(...)
-//#endif
 
 //File system objects
 static lfs_t        fs;
@@ -134,7 +130,7 @@ error_t fsInit(void)
  **/
 bool_t fsFileExists(const char_t *path)
 {
-    TRACE_DEBUG("..........fsFileExists(%s)..........\r\n", path);
+    TRACE_VERBOSE("..........fsFileExists(%s)..........\r\n", path);
     int32_t res = 0;
     struct lfs_info info = { 0 };
 
@@ -301,7 +297,7 @@ error_t fsGetFileSize(const char_t *path, uint32_t *size)
         return ERROR_FAILURE;                   // error
     
     if (LFS_TYPE_DIR == fileInfo.type)
-        return ERROR_INVALID_FILE;              // this is not a file but a directory
+        return ERROR_FAILURE;              // this is not a file but a directory
     
     *size = fileInfo.size;
     
@@ -348,7 +344,14 @@ error_t fsGetFileStat(const char_t *path, FsFileStat *fileStat)
    osMemset(fileStat, 0, sizeof(FsFileStat));
 
    //File attributes
-   fileStat->attributes = info.type;
+   if(LFS_TYPE_REG == info.type)
+   {
+       fileStat->attributes = 0x01;
+   }
+   else if (LFS_TYPE_DIR == info.type)
+   {
+       fileStat->attributes = 0x10; // FOR DIRECTORIES!!??
+   }    
    //File size
    fileStat->size = info.size;
 
@@ -817,8 +820,20 @@ error_t fsReadDir(FsDir *dir, FsDirEntry *dirEntry)
         return ERROR_END_OF_STREAM;
 
     //File attributes
-    dirEntry->attributes = lfsDirEntry.type;                // Determine if this is a file(0x01) or dir(0x02)
+    
+    //dirEntry->attributes = lfsDirEntry.type;                // Determine if this is a file(0x01) or dir(0x02)
+    
+    if(LFS_TYPE_REG == lfsDirEntry.type)
+    {
+        dirEntry->attributes = 0x01;        // for files??
+    }
+    else if (LFS_TYPE_DIR == lfsDirEntry.type)
+    {
+        dirEntry->attributes = 0x10;        // FOR DIRECTORIES!!??
+    }
     TRACE_VERBOSE("..........fsReadDir: lfsDirEntry.type = %d.........\r\n", lfsDirEntry.type);
+    TRACE_VERBOSE("..........fsReadDir: fileStat.attributes = %d.........\r\n", dirEntry->attributes);
+    
     //File size
     dirEntry->size = lfsDirEntry.size;
     //Copy the time of last modification: not available in littleFS

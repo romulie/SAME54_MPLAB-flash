@@ -1,5 +1,5 @@
-Some problems:
-1. Folders created on the LittleFS are viewed by FTP-clients as files but can contain files and work almost fine.
+Problems:
+1. 
 
 
 
