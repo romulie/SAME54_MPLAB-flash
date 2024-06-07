@@ -294,7 +294,7 @@ error_t fsGetFileSize(const char_t *path, uint32_t *size)
 #endif
     
     if (res < 0)
-        return ERROR_FAILURE;                   // error
+        return ERROR_FAILURE;              // error
     
     if (LFS_TYPE_DIR == fileInfo.type)
         return ERROR_FAILURE;              // this is not a file but a directory
@@ -355,8 +355,9 @@ error_t fsGetFileStat(const char_t *path, FsFileStat *fileStat)
    //File size
    fileStat->size = info.size;
 
-   //Time of last modification??
-   //Make sure the date is valid??
+   //TODO: Set time of last modification here
+   //TODO: Make sure the date is valid
+
 
    //Successful processing
    return NO_ERROR;

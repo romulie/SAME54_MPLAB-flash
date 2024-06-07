@@ -58,8 +58,8 @@
 /* SERCOM4 clk freq value for the baud calculation */
 #define SERCOM4_Frequency      (14999936UL)
 
-/* SERCOM4 SPI baud value for 1000000 Hz baud rate */
-#define SERCOM4_SPIM_BAUD_VALUE         (6UL)
+/* SERCOM4 SPI baud value for 1500000 Hz baud rate */
+#define SERCOM4_SPIM_BAUD_VALUE         (3UL)
 
 /*Global object to save SPI Exchange related data  */
 volatile static SPI_OBJECT sercom4SPIObj;
@@ -151,14 +151,12 @@ void SERCOM4_SPI_Initialize(void)
 
 bool SERCOM4_SPI_TransferSetup(SPI_TRANSFER_SETUP *setup, uint32_t spiSourceClock)
 {
-    bool statusValue = true;
-///#if 0
- // Attention: commenting this section out omits reinitialization of SPI and eliminates SCL pulse at the beginning of all SPI communications
- // which leads to the better signal: MOSI is stable during rising edge of SCK.
     uint32_t baudValue = 0U;
 
-    //bool statusValue = false;
-
+    bool statusValue = false;
+//#if 0
+ // Attention: commenting this section out omits reinitialization of SPI and eliminates SCL pulse at the beginning of all SPI communications
+ // which leads to the better signal: MOSI is stable during rising edge of SCK.
     if(spiSourceClock == 0U)
     {
         /* Fetch Master Clock Frequency directly */
@@ -178,8 +176,8 @@ bool SERCOM4_SPI_TransferSetup(SPI_TRANSFER_SETUP *setup, uint32_t spiSourceCloc
     {
         if (setup->clockFrequency <= spiSourceClock/2U)
         {
-            baudValue = SERCOM4_SPIM_BAUD_VALUE;
-            //baudValue = (spiSourceClock/(2U*(setup->clockFrequency))) - 1U;
+            //baudValue = SERCOM4_SPIM_BAUD_VALUE;
+            baudValue = (spiSourceClock/(2U*(setup->clockFrequency))) - 1U;
 
             /* Set the lowest possible baud */
             if (baudValue >= 255U)

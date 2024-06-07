@@ -65,93 +65,21 @@
 #include "driver_w25qxx_register_test.h"
 
 
+//Attention: The test is quite long and destroys data on the flash
+//#define USE_FLASH_ERASE_TEST
+
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: RTOS "Tasks" Routine
 // *****************************************************************************
 // *****************************************************************************
+
 /* Handle for the APP_Tasks. */
 TaskHandle_t xAPP_Tasks;
 
-static void lAPP_Tasks(  void *pvParameters  )
-{   
-     
-    /* Maintain Device Drivers */
-    int err = W25qxx_Startup();
-    if (err)
-    {
-         TRACE_INFO("\n\r----------------W25qxx_Startup() FAILED!\r\n");
-    }
-        else
-    {
-        TRACE_INFO("\n\r\++++++++++++++++W25qxx_Startup() OK!\r\n");
-    }
-    
-    osDelayTask(500);
-    
-//ATTENTION: !!!LFS does not Start if tests are run before the LFS_Startup()!!!
-    TRACE_INFO("\r\nAbout to start w25qxx register test!\r\n");
-    w25qxx_register_test((w25qxx_type_t)W25Q128, (w25qxx_interface_t)W25QXX_INTERFACE_SPI, (w25qxx_bool_t)W25QXX_BOOL_FALSE);
-    
-    osDelayTask(500);
-    
-    //Commented-out since the test is quite long
-    //TRACE_INFO("\r\nAbout to start w25qxx read test!\r\n");
-    //w25qxx_read_test((w25qxx_type_t)W25Q128, (w25qxx_interface_t)W25QXX_INTERFACE_SPI, (w25qxx_bool_t)W25QXX_BOOL_FALSE);
-    
-    osDelayTask(500);
-   
-    /* Start W25qxx driver again after the tests */
-    err = W25qxx_Startup();
-    if (err)
-    {
-         TRACE_INFO("\r\n----------------W25qxx_Startup() FAILED!\r\n");
-    }
-        else
-    {
-        TRACE_INFO("\r\n++++++++++++++++W25qxx_Startup() OK!\r\n");
-    }   
-  
-    // No need since the FS is initiated during FTP server startup (see fsInit())
-    // but is needed after chip erase test
-    // TODO: try fsInit() from Ftp_Startup module
-    TRACE_INFO("About to start LittleFS.......\n");
-    err = Littlefs_Startup();
-    if (err)
-    {
-        TRACE_INFO("----------------LittleFS_Startup() FAILED!\r\n");
-    }
-    else
-    {
-        TRACE_INFO("++++++++++++++++LittleFS_Startup() OK!\r\n");
-    }    
-    
-    osDelayTask(1000);
-    
- 
-    /* Maintain Middleware & Other Libraries */
-    TRACE_INFO("About to start FTP server.......\r\n");
-    err = Ftp_Startup();
-    if (err)
-    {
-        TRACE_INFO("----------------Ftp_Startup() FAILED!\r\n");
-    }
-    else
-    {
-        TRACE_INFO("++++++++++++++++Ftp_Startup() OK!\r\n");
-    }
- 
-    
-    while(true)
-    {
-        APP_Tasks();
-        LED0_Toggle();
-        //TRACE_DEBUG("Toggling the LED0.\r\n");
-        osDelayTask(1000);
-    }
-}
-
-
+/* main app task */
+static void lAPP_Tasks(  void *pvParameters  );
 
 // *****************************************************************************
 // *****************************************************************************
@@ -192,6 +120,86 @@ void SYS_Tasks ( void )
     vTaskStartScheduler(); /* This function never returns. */
 
 }
+
+
+static void lAPP_Tasks(  void *pvParameters  )
+{   
+     
+    /* Maintain Device Drivers */
+    int err = W25qxx_Startup();
+    if (err)
+    {
+         TRACE_INFO("\n\r----------------W25qxx_Startup() FAILED!\r\n");
+    }
+        else
+    {
+        TRACE_INFO("\n\r\++++++++++++++++W25qxx_Startup() OK!\r\n");
+    }
+    
+    osDelayTask(500);
+    
+    //ATTENTION: !!!LFS does not Start if tests are run just before the LFS_Startup()! You need call W25qxx_Startup() once again
+    TRACE_INFO("\r\nAbout to start w25qxx register test!\r\n");
+    w25qxx_register_test((w25qxx_type_t)W25Q128, (w25qxx_interface_t)W25QXX_INTERFACE_SPI, (w25qxx_bool_t)W25QXX_BOOL_FALSE);
+    
+    osDelayTask(500);
+    
+#ifdef USE_FLASH_ERASE_TEST
+    //Attention: The test is quite long and destroys data on the flash
+    TRACE_INFO("\r\nAbout to start w25qxx read test!\r\n");
+    w25qxx_read_test((w25qxx_type_t)W25Q128, (w25qxx_interface_t)W25QXX_INTERFACE_SPI, (w25qxx_bool_t)W25QXX_BOOL_FALSE);  
+    osDelayTask(500);
+#endif
+    
+    /* Start W25qxx driver again after the tests */
+    err = W25qxx_Startup();
+    if (err)
+    {
+         TRACE_INFO("\r\n----------------W25qxx_Startup() FAILED!\r\n");
+    }
+        else
+    {
+        TRACE_INFO("\r\n++++++++++++++++W25qxx_Startup() OK!\r\n");
+    }   
+  
+    // No need since the FS is initiated during FTP server startup (see fsInit())
+    // but is needed once again after chip erase test
+    // TODO: try fsInit() from Ftp_Startup module
+    TRACE_INFO("About to start LittleFS.......\n");
+    err = Littlefs_Startup();
+    if (err)
+    {
+        TRACE_INFO("----------------LittleFS_Startup() FAILED!\r\n");
+    }
+    else
+    {
+        TRACE_INFO("++++++++++++++++LittleFS_Startup() OK!\r\n");
+    }    
+    
+    osDelayTask(500);
+    
+    /* Maintain Middleware & Other Libraries */
+    TRACE_INFO("About to start FTP server.......\r\n");
+    err = Ftp_Startup();
+    if (err)
+    {
+        TRACE_INFO("----------------Ftp_Startup() FAILED!\r\n");
+    }
+    else
+    {
+        TRACE_INFO("++++++++++++++++Ftp_Startup() OK!\r\n");
+    }
+  
+    while(true)
+    {
+        APP_Tasks();
+        LED0_Toggle();
+        //TRACE_DEBUG("Toggling the LED0.\r\n");
+        osDelayTask(500);
+    }
+}
+
+
 
 /*******************************************************************************
  End of File

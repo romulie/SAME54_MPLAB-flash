@@ -69,37 +69,37 @@ FtpClientConnection ftpConnections[APP_FTP_LOCAL_SERVER_MAX_CONNECTIONS];
 //TODO: Forward declaration of ftp-server call-back functions
 error_t ftpConnectCallback(FtpClientConnection *connection, const IpAddr *clientIpAddr, uint16_t clientPort)
 {
-    TRACE_INFO("FTP connection callback. Client port = %d\r\n", clientPort);
+    //TRACE_DEBUG("FTP connection callback. Client port = %d\r\n", clientPort);
     return 0;
 }
 
 void ftpDisconnectCallback(FtpClientConnection *connection, const IpAddr *clientIpAddr, uint16_t clientPort)
 {
-    TRACE_INFO("FTP disconnection callback. Client port = %d\r\n", clientPort);
+    //TRACE_DEBUG("FTP disconnection callback. Client port = %d\r\n", clientPort);
     return;
 }
 
 uint_t ftpCheckUserCallback(FtpClientConnection *connection, const char_t *user)
 {
-    TRACE_INFO("***********FTP_CALLBACK: FTP check user callback. user = %s\r\n", user);
+    //TRACE_DEBUG("***********FTP_CALLBACK: FTP check user callback. user = %s\r\n", user);
     return 1;
 }
 
 uint_t ftpCheckPasswordCallback(FtpClientConnection *connection, const char_t *user, const char_t *password)
 {
-    TRACE_INFO("***********FTP_CALLBACK: FTP check password callback. user = %s, password = %s\r\n", user, password);
+    //TRACE_DEBUG("***********FTP_CALLBACK: FTP check password callback. user = %s, password = %s\r\n", user, password);
     return 1;
 }
 uint_t ftpGetFilePermCallback(FtpClientConnection *connection, const char_t *user, const char_t *path)
 {
     uint_t permission = FTP_FILE_PERM_LIST | FTP_FILE_PERM_READ | FTP_FILE_PERM_WRITE;
-    TRACE_INFO("***********FTP_CALLBACK: FTP file permission callback. user = %s, path = %s\r\n", user, path);
+    //TRACE_DEBUG("***********FTP_CALLBACK: FTP file permission callback. user = %s, path = %s\r\n", user, path);
     return permission;
 }
 
 error_t ftpUnknownCommandCallback(FtpClientConnection *connection, const char_t *command, const char_t *param)
 {
-    TRACE_INFO("***********FTP_CALLBACK: FTP unknown command callback. command = %s, param = %s\r\n", command, param);
+    //TRACE_DEBUG("***********FTP_CALLBACK: FTP unknown command callback. command = %s, param = %s\r\n", command, param);
     return 0;
 }
 //=========================================================

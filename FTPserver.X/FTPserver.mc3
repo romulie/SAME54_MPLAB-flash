@@ -10319,7 +10319,7 @@
       &lt;/Boolean&gt;
     &lt;/Attributes&gt;
     &lt;Values dnOrder=&quot;1&quot;&gt;
-      &lt;User dnOrder=&quot;0&quot; value=&quot;1000000&quot;/&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;1500000&quot;/&gt;
     &lt;/Values&gt;
   &lt;/sercom4&gt;
 &lt;/sercom4&gt;
@@ -10330,7 +10330,7 @@
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sercom4&gt;
   &lt;sercom4 dnOrder=&quot;0&quot; id=&quot;SPI_BAUD_REG_VALUE&quot;&gt;
     &lt;Values dnOrder=&quot;0&quot;&gt;
-      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom4&quot; value=&quot;6&quot;/&gt;
+      &lt;Dynamic dnOrder=&quot;0&quot; id=&quot;sercom4&quot; value=&quot;3&quot;/&gt;
     &lt;/Values&gt;
   &lt;/sercom4&gt;
 &lt;/sercom4&gt;
@@ -11871,7 +11871,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>92c9a4d621b4dcd93192ca5833fe9124273b7e9ee8251fe40f0017899ad73f22</hash>
+         <hash>8d22d5c16d149f98cde922da3c48288d63da15ea0ccca948960a4ce895a3386e</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>
@@ -11999,7 +11999,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\sercom\spi_master\plib_sercom4_spi_master.c</file>
-         <hash>5148a19704aa271583d464b1bb6296935d5217c423530d0a0e2667f1f83601c8</hash>
+         <hash>6e5970d82cad8e2ed14e74a729400665e7135a015138df760ecb4d7e40dc975b</hash>
       </entry>
       <entry>
          <file>..\src\config\default\peripheral\sercom\spi_master\plib_sercom4_spi_master.h</file>
