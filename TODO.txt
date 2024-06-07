@@ -1,17 +1,8 @@
 Problems:
-1. 
-
+1. ...
 
 
 TODO:
-1. file ...\FTPserverXplainedPro\src\config\default\peripheral\sercom\spi_master\plib_sercom4_spi_master.c
-line 181-182:
-		baudValue = SERCOM4_SPIM_BAUD_VALUE; 					// works ok
-            	//baudValue = (spiSourceClock/(2U*(setup->clockFrequency))) - 1U; 	// does'nt work since setup->clockFrequency = 0
-
-2. ...\FTPserverXplainedPro\src\driver\w25qxx_driver\w25qxx_interface\drv_spi_harmony3.c
-line 140:
-		//DRV_SPI_TransferSetup ( SPIhandle, &SPIsetup ); // this does not work!!
-
-3. In w25qxx driver the field w25qxx_handle.extra is not used as for now. It may be used to store SPI instance, SS-pin instance, and optionally USART-debug instance and be extracted in 
+1. In w25qxx driver the field w25qxx_handle.extra is not used as for now.
+It may be used to store SPI instance, SS-pin instance, and optionally USART-debug instance and be extracted in 
 ...\FTPserverXplainedPro\src\driver\w25qxx_driver\w25qxx_interface\drv_spi_harmony3.c methods to implement multi-instance driver concept fully.

@@ -49,35 +49,8 @@ static uint8_t a_spi_cs_high(void *descr)
 
 uint8_t spi_init(void *descr)
 {
-    // No need because spi is initiated in SYS_Initialize() (main.c)??
-#if 0
-    const DRV_SPI_PLIB_INTERFACE drvSPI0PlibAPI =
-    {      
-        .setup = (DRV_SPI_PLIB_SETUP)SERCOM4_SPI_TransferSetup,                             // SPI PLIB Setup       
-        .writeRead = (DRV_SPI_PLIB_WRITE_READ)SERCOM4_SPI_WriteRead,                        // SPI PLIB WriteRead function
-        .isTransmitterBusy = (DRV_SPI_PLIB_TRANSMITTER_IS_BUSY)SERCOM4_SPI_IsTransmitterBusy,// SPI PLIB Transfer Status function    
-        .callbackRegister = (DRV_SPI_PLIB_CALLBACK_REGISTER)SERCOM4_SPI_CallbackRegister,   // SPI PLIB Callback Register
-    };
+    // DRV_SPI_Initialize() is called in SYS_Initialize() (main.c)
 
-    const uint32_t SPI_DATA_BITS = 8;
-    
-    const DRV_SPI_INIT drvSPI0InitData =
-    { 
-        .spiPlib = &drvSPI0PlibAPI,                              // SPI PLIB API
-        .remapDataBits = &SPI_DATA_BITS,
-        .remapClockPolarity = 0,
-        .remapClockPhase = 0,
-        .numClients = DRV_SPI_CLIENTS_NUMBER_IDX0,               // SPI Number of clients 
-        .clientObjPool = (uintptr_t)&sysObj[0],                  // SPI Client Objects Pool (uintptr_t)&, gDrvSPIObj[0], 
-    };
-
-    sysObj.drvSPI0 = DRV_SPI_Initialize(DRV_SPI_INDEX_0, (SYS_MODULE_INIT*)&drvSPI0InitData);
-    if (SYS_MODULE_OBJ_INVALID == sysObj.drvSPI0)
-    {
-        printf("\n\r =========================================== DRV_SPI_Initialize() ERROR!\r\n");// Handle error
-    }
-#endif
-  
     // Get the current status of the SPI driver module. Function DRV_SPI_Initialize should have been called before calling this function.
     SYS_STATUS sys_status = DRV_SPI_Status(sysObj.drvSPI0);
     if (SYS_STATUS_UNINITIALIZED == sys_status)
@@ -109,10 +82,10 @@ uint8_t spi_init(void *descr)
     };
     
     // DRV_SPI_Open must have been called to obtain a valid opened device handle.
-    if (!DRV_SPI_TransferSetup(SPIhandle, &SPIsetup)) // this does not work??
+    if (!DRV_SPI_TransferSetup(SPIhandle, &SPIsetup))
     {
         printf("\n\r =========================================== DRV_SPI_TransferSetup() Error!\n\r"); // Handle error
-        return 1;           // could not open driver / driver is not initialized 
+        return 1;           
     }  
     
     DRV_SPI_Close(SPIhandle);   // Close the driver
@@ -150,38 +123,10 @@ uint8_t spi_deinit(void *descr)
  */
 uint8_t spi_write_read(void *descr, uint8_t *in_buf, uint32_t in_len, uint8_t *out_buf, uint32_t out_len)
 {   
-    
-    // TODO: extract SYS_MODULE_INDEX for SPI here
+    // TODO: extract SYS_MODULE_INDEX, etc for SPI here
     static const SYS_MODULE_INDEX SPIindex = DRV_SPI_INDEX_0;
     static const DRV_IO_INTENT ioIntent = DRV_IO_INTENT_EXCLUSIVE;
     
-#if 0    
-    //SYS_STATUS sys_status = DRV_SPI_Status( sysObj.drvSPI0 );
-    //if (SYS_STATUS_UNINITIALIZED == sys_status)
-    //    printf("SPI driver is not ready!\r\n");
-    
-    static DRV_HANDLE SPIhandle;
-    
-    SPIhandle = DRV_SPI_Open(SPIindex, ioIntent); // 
-    if (DRV_HANDLE_INVALID == SPIhandle)
-    {
-        //printf("\n\r =========================================== DRV_SPI_Open() Error!\n\r"); // Handle error
-        return 1;           // could not open driver / driver is not initialized 
-    }
-    
-    //TODO: Setup current transfer
-    static DRV_SPI_TRANSFER_SETUP SPIsetup = 
-    {
-        .baudRateInHz = 50000,  //SERCOM4_SPIM_BAUD_VALUE
-        .clockPhase = DRV_SPI_CLOCK_PHASE_VALID_LEADING_EDGE,
-        .clockPolarity = DRV_SPI_CLOCK_POLARITY_IDLE_LOW,
-        .dataBits = DRV_SPI_DATA_BITS_8,
-        .chipSelect = 0,       //SYS_PORT_PIN_PB14
-        .csPolarity = DRV_SPI_CS_POLARITY_ACTIVE_LOW,
-    };
-    
-    DRV_SPI_TransferSetup ( SPIhandle, &SPIsetup ); // this does not work??
-#endif 
     
     SPIhandle = DRV_SPI_Open(SPIindex, ioIntent); // 
     if (DRV_HANDLE_INVALID == SPIhandle)
@@ -203,7 +148,6 @@ uint8_t spi_write_read(void *descr, uint8_t *in_buf, uint32_t in_len, uint8_t *o
     
     a_spi_cs_high(descr);       // set SS high
     
-    // No need to open-close during every transaction???
     DRV_SPI_Close(SPIhandle);  // Close the driver
 
     return 0;
