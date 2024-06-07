@@ -1,4 +1,4 @@
-# Microchip MPLAB 6.0 (Harmony3) project for SAME54Xplained board (ATSAME54P20A MCU) featuring:
+# Microchip MPLAB 6.2 (Harmony3) project for SAME54Xplained board (ATSAME54P20A MCU) featuring:
 
 - W25Q128 SPI Flash for data storage
 - Tests for flash IC before usage
