@@ -1,12 +1,12 @@
 #ifndef DRV_SPI_HARMONY3_H
 #define DRV_SPI_HARMONY3_H
 
-
 #include "stddef.h"
 #include "stdint.h"
 #include "w25qxx_custom_descriptor.h"   // not used
 #include "drv_spi.h"                    // Harmony3 driver
 
+#define SPI_BAUD_RATE_HZ     10000000
 
 #ifdef __cplusplus
  extern "C" {
