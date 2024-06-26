@@ -3,19 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/cyclone_tcp/ftp/ftp_server_commands.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/tasks.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/common/str.h</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/ftp_startup/ftp_startup.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/cyclone_tcp/dns/dns_common.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/common/os_port.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/main.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/littlefs/lfs.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/ftp_startup/fs_port_custom.h</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/littlefs_startup/littlefs_startup.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/driver/w25qxx_driver/w25qxx_interface/w25qxx_interface.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/w25qxx_startup/w25qxx_startup.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/tasks.c</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/peripheral/sercom/spi_master/plib_sercom4_spi_master.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/common/compiler_port.h</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/cyclone_tcp/dns/dns_common.h</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/common/strcasecmp.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/ftp_startup/fs_port_custom_littlefs.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/driver/w25qxx_driver/w25qxx_interface/drv_spi_harmony3.c</file>
         </group>
     </open-files>
 </project-private>

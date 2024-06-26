@@ -12,7 +12,7 @@
 
 // module print level
 //#define TRACE_LEVEL     TRACE_LEVEL_VERBOSE
-#define TRACE_LEVEL     TRACE_LEVEL_DEBUG   
+//#define TRACE_LEVEL     TRACE_LEVEL_DEBUG   
 
 #include "debug.h"
 
