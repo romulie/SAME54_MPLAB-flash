@@ -3,13 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/main.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/littlefs/lfs.h</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/ftp_startup/fs_port_custom.h</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/littlefs_startup/littlefs_startup.c</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/tasks.c</file>
-            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/peripheral/sercom/spi_master/plib_sercom4_spi_master.c</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/ftp_startup/fs_port_custom_littlefs.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/cycloneTCP/common/debug.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/main.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/libc_syscalls.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/littlefs/lfs.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/littlefs_startup/littlefs_startup.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/littlefs/lfs.c</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/third_party/littlefs/lfs_util.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/application/littlefs_startup/littlefs_startup.h</file>
+            <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/config/default/peripheral/sercom/spi_master/plib_sercom4_spi_master.c</file>
             <file>file:/E:/MPLabProjects/FTPserverXplainedPro/src/driver/w25qxx_driver/w25qxx_interface/drv_spi_harmony3.c</file>
         </group>
     </open-files>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="65">
   <projectmakefile>Makefile</projectmakefile>
-  <defaultConf>0</defaultConf>
+  <defaultConf>1</defaultConf>
   <confs>
     <conf name="default" type="2">
       <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>03EB:=&lt;pid>2111:=&lt;rev>0101:=&lt;man>Atmel Corp.:=&lt;prod>EDBG CMSIS-DAP:=&lt;sn>ATML2748051800005427:=&lt;drv>x:=&lt;xpt>h:=end</platformToolSN>
